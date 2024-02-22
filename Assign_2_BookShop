@@ -1,0 +1,107 @@
+#include<iostream>
+using namespace std;
+class weather_Report
+{
+	
+	public:
+		 int day;
+			float hightemp,lowtemp,amount_rain,amount_snow;
+	public:
+	weather_Report()
+	{
+		day=0;
+		hightemp=0;
+		lowtemp=0;
+		amount_rain=0;
+		amount_snow=0;
+	}
+	public:
+			void get_Data()
+			{
+			
+	
+				cout<<"Enter Days:";
+				cin>>day;
+				cout<<"Enter high temperature in the month:"<<endl;
+				cin>>hightemp;
+				cout<<"Enter low temperature in the Month:"<<endl;
+				cin>>lowtemp;
+				cout<<"Enter Amount of Rain:"<<endl;
+				cin>>amount_rain;
+				cout<<"Enter Amount of Snow:"<<endl;
+				cin>>amount_snow;
+			}
+			void Display()
+			{
+				cout<<endl<<"Day in month:"<<day<<endl;
+				cout<<"High temperature:"<<hightemp<<endl;
+				cout<<"Low temperature:"<<lowtemp<<endl;
+				cout<<"Rain Amount:"<<amount_rain<<endl;
+				cout<<"Snow Amount"<<amount_snow<<endl;
+			}
+};
+int main()
+{
+	int days,mon,choice,i;
+	float high=0,low=0,snow=0,rain=0;
+	weather_Report weather[12][31];
+	cout<<"enter days:";
+	cin>>mon;
+	if(mon==1||mon==3||mon==5||mon==7||mon==8||mon==10||mon==12)
+	{
+		days=31;
+	}
+	else if(mon==2)
+	{
+		cout<<"Enter days:";
+		cin>>days;
+		if(days!=28&&days!=29)
+		{
+			cout<<"Enter valid Choice";
+			return 0;
+		}
+	}
+	else
+	{
+		days=30;
+	}
+	do
+	{
+		cout<<"1.Daily data";
+		cout<<"2.Display";
+		cout<<"3.Report";
+		cout<<"4.Exit";
+		cout<<"Enter your Choice:";
+		cin>>choice;
+		switch(choice)
+		{
+		
+			case 1:for(i=1;i<=days;i++)
+					{
+						cout<<"days"<<i<<endl;
+						weather[mon][i].get_Data();
+					}
+			case 2:for(i=1;i<days;i++)
+					{
+						weather[mon][i].Display();
+					}
+			case 3:for(i=1;i<=days;i++)
+					{
+						high+=weather[mon][i].hightemp;
+						low+=weather[mon][i].lowtemp;
+						rain+=weather[mon][i].amount_rain;
+						snow+=weather[mon][i].amount_snow;
+						weather[mon][i].Display();
+					}
+					for(i=1;i<=days;i++)
+					{
+						cout<<"Avearge of high Temperature:"<<high/days;
+						cout<<"Avearge of Low Temperature:"<<low/days;
+						cout<<"Avearge of Rain:"<<rain/days;
+						cout<<"Avearge of snow:"<<snow/days;	
+					}
+			case 4:cout<<"Invalid Choice ....Try Again";
+		}
+	}while(choice!=4);
+	return 0;
+}
